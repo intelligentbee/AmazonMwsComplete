@@ -40,7 +40,11 @@ abstract class BaseMwsReport {
      */
     public static function validateHeaderRow($headerString) {
         $headerString = trim($headerString,"\n\r ");
-        if ($headerString == static::EXPECTED_HEADER) {
+
+        $expectedheader = static::EXPECTED_HEADER;
+        $pos = strpos($headerString, $expectedheader);
+
+        if ($headerString == static::EXPECTED_HEADER || $pos === 0) {
             return true;
         } else {
             throw new InvalidReportHeaderException("Unexpected file header. Got:\n#{$headerString}#\nExpected:\n#".static::EXPECTED_HEADER."#\n");
