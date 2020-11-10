@@ -9,7 +9,7 @@ abstract class BaseMwsReportRecord {
         $fieldArray = explode("\t", trim($rowString, "\r\n"));
         $fieldCount = count($fieldArray);
 
-        if ($expectedFieldCount != $fieldCount) {
+        if ($expectedFieldCount > $fieldCount) {
             throw new InvalidReportRecordException("Expected $expectedFieldCount fields, but found $fieldCount in row: [ " . implode('~~~', $fieldArray) . " ]");
         }
 
